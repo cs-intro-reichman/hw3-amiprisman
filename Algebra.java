@@ -26,42 +26,114 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+			if (x2>0){
+				for (int i = 0; i < x2 ; i++){
+					x1++;
+				}
+			}
+			else if (x2<0){
+				for (int r = 0; r < Math.abs(x2); r++ ){
+					x1--;
+				}
+			}
+		
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	if (x2>0){
+		for (int i = 0; i<x2;i++){
+			x1--;
+		}
 	}
-
+	else if (x2<0) {
+		for (int i = 0; i < Math.abs(x2); i++) {
+            x1++;
+	}
+		}
+	return x1;
+	}	
+	
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int result = 0;
+		boolean negetive = (x1<0) ^ (x2<0);
+		x1 = Math.abs(x1);
+		x2 = Math.abs(x2);
+		
+		for (int i = 0; i < x2; i++) {
+    		 for (int r = 0; r < x1; r++) {
+            	result = plus(result, 1); 
+       		 }
+    }
+		if (negetive){
+			result = minus(0,result);
+		}
+		return result;
 	}
+		
+
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		boolean neg = false;
+		if (x<0 && mod(n,2)!=0){
+			 neg = true; 
+		}
+		x = Math.abs(x);
+
+		
+		int result = 1;
+		for (int i = 0; i < n; i++){
+			result = times(result,x);
+		}
+		
+	if (neg){
+		result = minus(0,result);
+	}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+	
+public static int div(int x1, int x2) {
+    boolean neg1 = (x1 < 0);
+    boolean neg2 = (x2 < 0);
+
+    x1 = Math.abs(x1);
+    x2 = Math.abs(x2);
+
+   
+    int result = 0;
+    while (x1 >= x2) {
+        x1 = minus(x1, x2); 
+        result++;
+    }
+
+    if (neg1 != neg2) {
+        result = minus(0, result);  
+    }
+
+    return result;
+}
+
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int step = div(x1,x2);
+		int step2 = times(step,x2);
+		int result = minus(x1,step2);
+
+		return result;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int val = 0;
+		while (times(val,val)<=x){
+			val ++;
+		} 
+	return minus(val,1);
 	}	  	  
 }
